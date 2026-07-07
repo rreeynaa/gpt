@@ -202,7 +202,7 @@ def generate_text_simple(model, idx, max_new_tokens, context_size):
             logits = model(idx_cond)
 
         # Focus only on the last time step: (batch, n_tokens, vocab_size) -> (batch, vocab_size)
-        logits = logits[:, -1, :]
+        logits = logits[:, -1, :] #last vectore row of each batch
 
         # Apply softmax to get probabilities
         probas = torch.softmax(logits, dim=-1)
@@ -247,3 +247,5 @@ if __name__ == "__main__":
 
     decoded_text = tokenizer.decode(out.squeeze(0).tolist())
     print("Generated text:", decoded_text)
+
+    #meaninglesss sentences cause model not trained yet
