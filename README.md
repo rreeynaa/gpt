@@ -5,28 +5,28 @@ GPT model implemented from scratch using PyTorch, following the **GPT-2 124M arc
 **Pipeline:**
 
 ```text
-Text → Tokens → Embeddings → Transformer → Probabilities → Next Token → Text
+text → tokens → embeddings → transformer → probabilities → next token → text
 ```
 
-### Architecture
+### architecture
 
-* **Vocabulary Size:** 50,257 tokens
-* **Context Length:** 1,024 tokens
-* **Embedding Dimension:** 768
-* **Attention Heads:** 12
-* **Transformer Blocks:** 12
-* **Feed-Forward Dimension:** 3,072
-* **Dropout:** 0.1
+* **vocabulary size:** 50,257 tokens
+* **context length:** 1,024 tokens
+* **embedding dimension:** 768
+* **attention heads:** 12
+* **transformer blocks:** 12
+* **feed-forward dimension:** 3,072
+* **dropout:** 0.1
 
-### Components
+### components
 
-* Token & Positional Embeddings
-* Multi-Head Self-Attention
-* Causal Masking
-* Layer Normalization
-* GELU Activation
-* Feed-Forward Networks
-* Residual Connections
-* Autoregressive Text Generation
+* token & positional embeddings
+* multi-head self-attention
+* causal masking
+* layer normalization
+* GELU activation
+* feed-forward networks
+* residual connections
+* autoregressive text generation
 
-> **Note:** The model is not trained and does not use pretrained weights, so the generated text will be meaningless. The project is intended to demonstrate the GPT architecture and text-generation process.
+> **note:** The model is not trained and does not use pretrained weights, so the generated text will be meaningless. The project is intended to demonstrate the GPT architecture and text-generation process.
