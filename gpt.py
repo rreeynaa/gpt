@@ -1,17 +1,8 @@
-"""
-GPT model implemented from scratch and used to generate text.
-Every class/function here is taken directly from LLM_Architecture.ipynb
-(GPT ARCHITECTURE PART 1 -> 7).
-"""
-
 import torch
 import torch.nn as nn
 import tiktoken
 
-
-# --------------------------------------------------------------------------
 # GPT_CONFIG_124M
-# --------------------------------------------------------------------------
 GPT_CONFIG_124M = {
     "vocab_size": 50257,    # Vocabulary size
     "context_length": 1024, # Context length
@@ -23,9 +14,7 @@ GPT_CONFIG_124M = {
 }
 
 
-# --------------------------------------------------------------------------
 # GPT ARCHITECTURE PART 5 (attention building block, used inside TransformerBlock)
-# --------------------------------------------------------------------------
 class MultiHeadAttention(nn.Module):
     def __init__(self, d_in, d_out, context_length, dropout, num_heads, qkv_bias=False):
         super().__init__()
@@ -79,9 +68,8 @@ class MultiHeadAttention(nn.Module):
         return context_vec
 
 
-# --------------------------------------------------------------------------
+
 # GPT ARCHITECTURE PART 2: LAYER NORMALIZATION
-# --------------------------------------------------------------------------
 class LayerNorm(nn.Module):
     def __init__(self, emb_dim):
         super().__init__()
@@ -96,9 +84,8 @@ class LayerNorm(nn.Module):
         return self.scale * norm_x + self.shift
 
 
-# --------------------------------------------------------------------------
+
 # GPT ARCHITECTURE PART 3: FEEDFORWARD NEURAL NETWORK WITH GELU ACTIVATION
-# --------------------------------------------------------------------------
 class GELU(nn.Module):
     def __init__(self):
         super().__init__()
@@ -123,9 +110,8 @@ class FeedForward(nn.Module):
         return self.layers(x)
 
 
-# --------------------------------------------------------------------------
+
 # GPT ARCHITECTURE PART 5: TRANSFORMER BLOCK (attention + feedforward + shortcuts)
-# --------------------------------------------------------------------------
 class TransformerBlock(nn.Module):
     def __init__(self, cfg):
         super().__init__()
@@ -159,9 +145,7 @@ class TransformerBlock(nn.Module):
         return x
 
 
-# --------------------------------------------------------------------------
 # GPT ARCHITECTURE PART 6: ENTIRE GPT MODEL
-# --------------------------------------------------------------------------
 class GPTModel(nn.Module):
     def __init__(self, cfg):
         super().__init__()
@@ -186,10 +170,7 @@ class GPTModel(nn.Module):
         logits = self.out_head(x)
         return logits
 
-
-# --------------------------------------------------------------------------
 # GPT ARCHITECTURE PART 7: GENERATING TEXT FROM OUTPUT TOKENS
-# --------------------------------------------------------------------------
 def generate_text_simple(model, idx, max_new_tokens, context_size):
     # idx is (batch, n_tokens) array of indices in the current context
     for _ in range(max_new_tokens):
@@ -216,9 +197,7 @@ def generate_text_simple(model, idx, max_new_tokens, context_size):
     return idx
 
 
-# --------------------------------------------------------------------------
 # Put it all together: build the model and generate text
-# --------------------------------------------------------------------------
 if __name__ == "__main__":
     torch.manual_seed(123)
 
